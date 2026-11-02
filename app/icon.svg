@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!--
+    Static favicon — the resting frame of `AnimatedFavicon`.
+
+    Literal colours here are unavoidable and are the ONE exception the design
+    system's token rule cannot cover: this is a standalone asset served to the
+    browser's tab strip, outside the CSS pipeline entirely. The values are
+    `--color-panel` and `--color-panel-muted` from `globals.css`, light theme.
+    The runtime component reads the live tokens instead, so it follows the
+    theme; this file is what shows before JS runs and under reduced motion.
+
+    The mark is `IconLeaf` from `components/icons`, blade FILLED rather than
+    stroked — a 1.6 stroke on a 24 grid renders as sub-pixel mush at 16px.
+  -->
+  <rect width="24" height="24" rx="5.5" fill="#22392c"/>
+  <g transform="translate(2.11 1.42) scale(0.86)">
+    <path
+      d="M20 3.6c0 8.4-4.8 13.4-11.6 14C5 17.9 3 15.2 3 11.9 3 7 7.5 3.6 13.7 3.6H20Z"
+      fill="#a8bfae"/>
+    <path
+      d="M18.9 4.7C13.7 8.4 9.9 12.9 7.4 21"
+      fill="none" stroke="#22392c" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

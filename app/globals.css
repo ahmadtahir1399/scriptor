@@ -1,0 +1,1181 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@config "../tailwind.config.ts";
+
+/*
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Scriptor design system — "Verdant Study"
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * This file is the ONLY place in the codebase where a raw colour value may
+ * appear. Every component references these tokens by name (bg-surface,
+ * text-ink, border-border, …). If you find yourself reaching for a hex literal
+ * in a component, the token is missing and belongs here instead.
+ *
+ * The palette is warm and botanical: linen grounds, espresso ink, pine as the
+ * brand. It replaced an academic-navy system; the token NAMES were kept
+ * identical so the swap re-themed every screen without touching a component.
+ *
+ * ── SEMANTIC CONTRACT ──────────────────────────────────────────────────────
+ *
+ *   primary   (pine)      → brand, structure, neutral/system. Solid fills,
+ *                           sidebar, display ink, focus ring.
+ *                           NEVER a status signal.
+ *   verified  (sage-deep) → verified, passed, resolved
+ *   warning   (honey-ink) → needs review
+ *   critical  (clay)      → problem, failed, high risk
+ *   ai        (aubergine) → AI signal ONLY (never decorative)
+ *   decor     (honey)     → DECORATIVE ONLY. 2.17:1 on linen. Never text,
+ *                           never a 1px-on-light border that carries meaning.
+ *
+ * ── WHY THE CONTRACT CHANGED FROM "navy → neutral" ─────────────────────────
+ *
+ * Pine is a dark green and `verified` is a green: on the face of it, green
+ * would mean two things. The obvious fix — separate them by value — is
+ * *arithmetically impossible*, not merely hard:
+ *
+ *   a colour that is AA body text on linen must have L ≤ 0.1438
+ *   a colour 3:1 distinguishable from pine must have L ≥ 0.2034
+ *
+ * The window is empty, for every hue, not just green. The same holds inverted
+ * in dark mode. So the separation is made by ROLE instead, and the role rule
+ * is what every component must honour:
+ *
+ *   1. `primary` never encodes state. A pine surface means "this is chrome",
+ *      never "this passed".
+ *   2. Status renders as a soft-tinted pill: `bg-*-soft` + `text-*`, always
+ *      with a text label from messages/*.json. Colour reinforces the label;
+ *      it never carries the meaning alone. (This is also why the status
+ *      foregrounds are mutually ~1.2:1 and that is fine — a sighted-with-CVD
+ *      user reads the word, not the hue.)
+ *   3. Solid `verified`/`warning`/`critical` fills are for thin accents —
+ *      left borders, dots, gauge arcs — that always sit beside that label.
+ *
+ * ── CONTRAST FLOOR (WCAG AA, verified by computation, both themes) ─────────
+ *
+ *   ink      on bg / surface        12.59:1 / 14.20:1
+ *   muted    on bg / surface         5.48:1 /  6.18:1   (#7A7266 was 3.94 — no)
+ *   primary  on bg / surface        10.32:1 / 11.64:1
+ *   verified on bg / its soft        6.13:1 /  6.12:1
+ *   warning  on bg / its soft        5.04:1 /  5.14:1
+ *   critical on bg / its soft        4.80:1 /  4.58:1
+ *   ai       on bg / its soft        6.26:1 /  6.05:1
+ *   *-foreground on its solid accent ≥ 5.42:1 everywhere
+ *
+ * The warm palette has far less headroom than the navy one did. Verify any new
+ * pair with real contrast math, never by eye.
+ */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* ═══ THE GREEN RAMP — the identity ═══════════════════════════════════
+   *
+   * Green is the app. Pine and sage carry it; the warm neutrals below are
+   * ground, never subject. Two greens cannot build an app, so this is a full
+   * ramp and every green in the product is a step on it.
+   *
+   * `--color-green-*: initial` first CLEARS Tailwind's stock green. Without
+   * that, `green-50` and `green-950` survive from the default palette and
+   * someone eventually ships Tailwind's mint next to our sage. Only the ten
+   * steps declared here exist.
+   *
+   * Ratios are against --linen (#F1E9DD), computed, not estimated.
+   *   TEXT-SAFE on linen: 900–500.  GRAPHICS ONLY: 400–050.
+   */
+  --color-green-*: initial;
+  --color-green-900: #1a2c22; /* 12.22:1  gradient ends, deepest ground */
+  --color-green-800: #22392c; /* 10.32:1  PINE — primary, sidebar, buttons */
+  --color-green-700: #2e4a38; /*  8.10:1  hover / pressed on primary */
+  --color-green-600: #3c5d46; /*  6.13:1  success + verified TEXT */
+  --color-green-500: #47694f; /*  5.13:1  secondary text on green surfaces */
+  --color-green-400: #6b9078; /*  2.96:1  borders, icons, strokes — NOT text */
+  --color-green-300: #8aa891; /*  2.16:1  SAGE — gauges, chart lines */
+  --color-green-200: #b7c9bb; /*          sage-soft — fills, tracks */
+  --color-green-100: #d8e4db; /*          tints */
+  --color-green-050: #e1ede2; /*          verified pill backgrounds */
+
+  /* ---- The warm ground ------------------------------------------------
+   * Linen, almond and espresso are the canvas the green sits on. If a
+   * screenshot reads as "a beige app with green accents", the green has been
+   * under-used — it is not that these values are wrong.
+   */
+  --color-bg: #f1e9dd; /* linen */
+  --color-surface: #fbf7f0; /* card */
+  --color-border: #e1d5c4; /* hairline */
+  --color-ink: #2a2521; /* espresso — 12.59:1 on linen */
+
+  /* TWO muted greys, because no single value clears AA on both the pale card
+   * and the linen/almond ground.
+   *   --color-muted      safe EVERYWHERE (linen 5.48, almond 4.64, card 6.18)
+   *   --color-muted-soft one step lighter, CARDS ONLY (4.62:1 on surface)
+   * The blind default is the safe one on purpose: `text-muted` is applied
+   * across ~15 screens without anyone checking what is behind it. Reach for
+   * `text-muted-soft` only when you can see the card it sits on.
+   *
+   * NB the brief's table lists #7A7266 at 4.50:1 on --surface. It is 4.44:1
+   * and fails; #786F63 is the nearest value that actually passes. */
+  --color-muted: #635c51;
+  --color-muted-soft: #786f63;
+
+  /* ---- Semantic aliases onto the ramp ---------------------------------
+   * Components say what they MEAN (`bg-primary`) and reach for a ramp step
+   * (`bg-green-700`) only when they genuinely need that exact value.
+   */
+  --color-primary: var(--color-green-800);
+  --color-primary-hover: var(--color-green-700);
+  --color-primary-soft: #e6d6c3; /* almond — wells, tracks, secondary fills */
+  --color-verified: var(--color-green-600);
+  --color-warning: #7a5e28; /* honey-ink — 5.06:1 (raw honey is not text) */
+  --color-critical: #94553f; /* clay */
+  --color-ai: #6b4a63; /* aubergine — AI signal only */
+  --color-highlight: #f6e4b8; /* honey wash — PDF finding highlights */
+
+  /* Foreground colours that sit on top of the accents above. Warm off-white
+   * rather than pure #fff: a cold white on a warm accent reads as a bug. */
+  --color-primary-foreground: #f1e9dd;
+  --color-verified-foreground: #fbf7f0;
+  --color-warning-foreground: #fbf7f0;
+  --color-critical-foreground: #fbf7f0;
+  --color-ai-foreground: #fbf7f0;
+  --color-highlight-foreground: #2a2521;
+
+  /* Tinted backgrounds for pills / badges / soft states. */
+  --color-verified-soft: var(--color-green-050);
+  --color-warning-soft: #f6ebd8;
+  --color-critical-soft: #f0e2dc;
+  --color-ai-soft: #efe3eb;
+
+  /* ---- The pine panel -------------------------------------------------
+   * The dark panels — sidebar, hero card, completion card — are all one
+   * gradient (`.pine-panel`) so the three can never drift apart.
+   *
+   * These are deliberately NOT aliases of `primary`. In dark mode `primary`
+   * has to move to the light end of the scale to stay visible, but the panel
+   * must stay a dark panel in both themes — aliasing them would turn the
+   * sidebar into a pale sage slab the moment anyone toggled the theme.
+   */
+  --color-panel: var(--color-green-800);
+  --color-panel-deep: var(--color-green-900);
+  --color-panel-foreground: #f1e9dd; /* linen on pine — 10.32:1 */
+  --color-panel-muted: #a8bfae; /* secondary ink on pine — 6.35:1 */
+
+  /* ---- shadcn sidebar tokens ------------------------------------------
+   * The stock sidebar primitive is generated against these names. Mapping
+   * them here means it can never render an unapproved colour.
+   *
+   * `--color-sidebar` must be a FLAT pine: it feeds `bg-sidebar`, and a
+   * `background-color` cannot hold a gradient. `.pine-panel` layers the
+   * gradient on top.
+   */
+  --color-sidebar: var(--color-green-800);
+  --color-sidebar-foreground: #f1e9dd;
+  --color-sidebar-accent: #2e4a38; /* hovered / active row */
+  --color-sidebar-accent-foreground: #f1e9dd;
+  --color-sidebar-border: #33503e;
+  --color-sidebar-ring: #e6d6c3; /* almond — focus must survive the pine */
+  --spacing-sidebar-width: 17rem;
+  --spacing-sidebar-width-icon: 3.25rem;
+
+  /* ---- Decorative only ------------------------------------------------
+   * Honey is the single metallic accent and it is 2.17:1 on linen. It may
+   * fill, rule or glow. It may never be text, and never a 1px border that
+   * is the only thing communicating a state. Use `warning` for honey TEXT.
+   */
+  --color-decor: #be9b5b; /* honey — 2.17:1 on linen, 4.75:1 on pine */
+  --color-decor-soft: var(--color-green-200); /* sage at fill strength */
+
+  /* ---- shadcn/ui semantic aliases ------------------------------------
+   * shadcn primitives are generated against these names. Aliasing them onto
+   * the Scriptor palette means every shadcn component inherits the theme for
+   * free, and no shadcn file needs hand-editing.
+   */
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-ink);
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-ink);
+  --color-popover: var(--color-surface);
+  --color-popover-foreground: var(--color-ink);
+  --color-secondary: var(--color-primary-soft);
+  --color-secondary-foreground: var(--color-primary);
+  --color-muted-foreground: var(--color-muted);
+  --color-accent: var(--color-primary-soft);
+  --color-accent-foreground: var(--color-primary);
+  --color-destructive: var(--color-critical);
+  --color-destructive-foreground: var(--color-critical-foreground);
+  --color-input: var(--color-border);
+  --color-ring: var(--color-primary);
+
+  /* ---- Chart series ---------------------------------------------------
+   * shadcn's chart primitive resolves every series through --color-chart-N,
+   * so this is where a chart's palette is decided — never in the component.
+   *
+   * A data series is a FILL, not a status: nothing here may be `verified`,
+   * `warning`, `critical` or `ai`, or a stacked area would quietly claim the
+   * document had failed something. So the series walk the green ramp with
+   * honey as the one contrasting step, which is the same pairing the score
+   * trend already uses (pine line, sage fill, honey end-cap).
+   *
+   * No .dark counterpart is needed: these alias ramp steps, and the ramp
+   * inverts wholesale below. Strength descends 1 → 5; a chart that needs all
+   * five is a chart that needs a legend.
+   */
+  --color-chart-1: var(--color-green-800);
+  --color-chart-2: var(--color-decor);
+  --color-chart-3: var(--color-green-600);
+  --color-chart-4: var(--color-green-500);
+  --color-chart-5: var(--color-green-400);
+
+  /* ---- Typography ----------------------------------------------------
+   * Three faces, three jobs. They are NOT interchangeable and must not be
+   * collapsed into one serif.
+   *
+   * --font-sans    : Inter. All UI chrome, all controls, all data.
+   * --font-display : Fraunces. Display only — page titles, stat values, the
+   *                  score gauge, card titles. Never sets a paragraph, a
+   *                  label or a control. Optically sized; `.display` below
+   *                  drives its `opsz`/`SOFT` axes.
+   * --font-serif   : Source Serif 4. The user's OWN writing — thesis text,
+   *                  excerpts, quotations (`.prose-thesis`). Keeping the
+   *                  student's prose in a different serif from our display
+   *                  type is what stops our voice and theirs blurring
+   *                  together. This is load-bearing, not decoration.
+   */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, Cambria, serif;
+
+  /* Type scale — referenced by name, never re-derived per page. */
+  --text-page-title: 1.5rem; /* 24px */
+  --text-page-title--line-height: 2rem;
+  --text-page-title--font-weight: 600;
+
+  --text-section-title: 1rem; /* 16px */
+  --text-section-title--line-height: 1.5rem;
+  --text-section-title--font-weight: 600;
+
+  --text-body: 0.875rem; /* 14px */
+  --text-body--line-height: 1.375rem;
+  --text-body--font-weight: 400;
+
+  --text-meta: 0.8125rem; /* 13px */
+  --text-meta--line-height: 1.25rem;
+  --text-meta--font-weight: 400;
+
+  --text-micro: 0.75rem; /* 12px */
+  --text-micro--line-height: 1rem;
+  --text-micro--font-weight: 500;
+  --text-micro--letter-spacing: 0.06em;
+
+  /* ---- Radii -----------------------------------------------------------
+   * Softened deliberately. The old 11/16/22 read as "rounded rectangle"; this
+   * set reads as pebble — which is the botanical-luxury register the whole
+   * palette is aiming at.
+   *
+   * `--radius-full` exists so controls that should be capsules (buttons,
+   * pills, inputs, nav rows) say so by name instead of every component
+   * reaching for `rounded-full` and quietly meaning something different.
+   */
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --radius-xl: 34px;
+  --radius-full: 9999px;
+
+  /* ---- Elevation ------------------------------------------------------
+   * A hairline does the structural work; the shadow only lifts the surface
+   * off the linen. Both are tinted PINE, never neutral black — a grey shadow
+   * on a warm background is the fastest way to make this palette look cheap.
+   */
+  --shadow-card:
+    0 1px 2px rgb(42 37 33 / 0.03), 0 10px 28px -20px rgb(34 57 44 / 0.2);
+  --shadow-lift:
+    0 2px 4px rgb(42 37 33 / 0.04), 0 22px 48px -24px rgb(34 57 44 / 0.3);
+  /* Menus and popovers float free of the page, so they carry the only
+     genuinely soft, wide shadow in the system. */
+  --shadow-popover:
+    0 2px 6px rgb(42 37 33 / 0.05), 0 24px 56px -20px rgb(34 57 44 / 0.28);
+
+  /* ---- Motion ---------------------------------------------------------
+   * This app should feel alive. The old rule here — "150–200ms, no spring,
+   * fade and rise 4px, that is the entire vocabulary" — was deliberately
+   * expanded: entrances stagger, the gauge and charts draw, numbers count up,
+   * work-in-progress shimmers.
+   *
+   * The architectural rule that keeps that affordable: motion is CSS FIRST.
+   * framer-motion forces "use client" and kills RSC, so it is reserved for
+   * genuinely stateful motion — drawers, AnimatePresence exits, drag, shared
+   * layout. Everything else is a keyframe plus an inline custom property, so
+   * an animated page can still be a Server Component.
+   *
+   * 150–200ms for UI response, 420ms for entrances, ~1.1s for a draw.
+   */
+  --ease-out-quiet: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-draw: cubic-bezier(0.22, 1, 0.36, 1);
+  /* A soft overshoot for things that ARRIVE — an entrance settles past its
+     mark by a hair and comes back. Not a bounce; you should feel it without
+     being able to point at it. Never used for a colour or a draw, where an
+     overshoot would mean the value briefly reads wrong. */
+  --ease-settle: cubic-bezier(0.34, 1.28, 0.48, 1);
+  --duration-quick: 150ms;
+  --duration-base: 200ms;
+  --duration-rise: 520ms;
+  --duration-draw: 1100ms;
+  /* Display-scale reveals only — a hero headline needs longer than a card
+     entrance or it reads as a flinch rather than an arrival. */
+  --duration-display: 760ms;
+
+  /* ---- Shell metrics — read by the layout components ------------------ */
+  --spacing-sidebar: 260px;
+  --spacing-sidebar-collapsed: 68px;
+  --spacing-topbar: 56px;
+  --spacing-bottom-nav: 56px;
+}
+
+/*
+ * Dark mode — the pine-deep counterpart. Light remains the primary experience.
+ *
+ * Overriding the same custom properties under .dark is enough: every Tailwind
+ * utility generated from @theme resolves through var(), so the whole app
+ * re-themes without a single dark: variant in component code.
+ *
+ * The grounds are pine driven down to near-black rather than neutral charcoal,
+ * and the ink is linen rather than white — which is what keeps the two themes
+ * recognisably the same product. Borders stay warm-tinted for the same reason.
+ *
+ * `primary` inverts to sage: pine at 10.32:1 on linen becomes invisible on a
+ * pine-black ground, so the brand hue has to move to the light end. The
+ * role contract above is unchanged and is what keeps it distinct from
+ * `verified` — the empty-window proof holds inverted here too.
+ *
+ * Every pair below was computed, not eyeballed; all clear AA (≥4.84:1).
+ */
+.dark {
+  /* The ramp inverts: the same ten steps, read from the other end. Everything
+   * aliased onto a ramp step follows automatically. */
+  --color-green-900: #d8e4db;
+  --color-green-800: #b7c9bb;
+  --color-green-700: #9cbba5;
+  --color-green-600: #8fbf9c;
+  --color-green-500: #6b9078;
+  --color-green-400: #4d6d58;
+  --color-green-300: #3a5544;
+  --color-green-200: #2c4234;
+  --color-green-100: #23342a;
+  --color-green-050: #1c2e22;
+
+  --color-bg: #141c17;
+  --color-surface: #1c2721;
+  --color-border: #37423a;
+  --color-ink: #ede4d6;
+  --color-muted: #a79b8a;
+  --color-muted-soft: #9c907e;
+  --color-primary: var(--color-green-700);
+  --color-primary-hover: var(--color-green-800);
+  --color-primary-soft: #26332b;
+  --color-verified: var(--color-green-600);
+  --color-warning: #ddb877;
+  --color-critical: #db947b;
+  --color-ai: #c4a0bb;
+  --color-highlight: #4e3d17;
+
+  --color-primary-foreground: #14261b;
+  --color-verified-foreground: #141c17;
+  --color-warning-foreground: #141c17;
+  --color-critical-foreground: #141c17;
+  --color-ai-foreground: #141c17;
+  --color-highlight-foreground: #ede4d6;
+
+  --color-verified-soft: var(--color-green-050);
+  --color-warning-soft: #33291a;
+  --color-critical-soft: #38231b;
+  --color-ai-soft: #2c2230;
+
+  /* The panel stays a pine panel, but LIFTS instead of sinking: on a
+   * pine-black page a darker sidebar would simply disappear. Hence these are
+   * literals, not ramp steps — the ramp inverted and the panel did not. */
+  --color-panel: #26352c;
+  --color-panel-deep: #1b2620;
+  --color-panel-foreground: #ede4d6;
+  --color-panel-muted: #a8bfae;
+
+  --color-sidebar: #26352c;
+  --color-sidebar-foreground: #ede4d6; /* 10.24:1 */
+  --color-sidebar-accent: #33473a; /* 7.93:1 against its foreground */
+  --color-sidebar-accent-foreground: #ede4d6;
+  --color-sidebar-border: #3a4c40;
+  --color-sidebar-ring: #cbab6e;
+
+  --color-decor: #cbab6e; /* 5.89:1 on the dark sidebar */
+  --color-decor-soft: #3d5145;
+
+  /* Warm-tinted rather than pure black, matching the light theme's intent. */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 22px -16px rgb(0 0 0 / 0.6);
+  --shadow-lift:
+    0 2px 4px rgb(0 0 0 / 0.45), 0 18px 40px -20px rgb(0 0 0 / 0.7);
+  --shadow-popover:
+    0 4px 16px -4px rgb(0 0 0 / 0.55), 0 1px 3px 0 rgb(0 0 0 / 0.4);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    text-rendering: optimizeLegibility;
+  }
+
+  /* One focus treatment for the entire app. */
+  :focus-visible {
+    @apply outline-primary outline-2 outline-offset-2;
+  }
+
+  ::selection {
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+}
+
+@layer components {
+  /* ---- Compound patterns ---------------------------------------------
+   * The handful of treatments that would otherwise be re-typed verbatim on
+   * every screen. Each is expressed purely in tokens.
+   */
+
+  /*
+   * Display type — Fraunces. Optically sized: at display sizes it wants to be
+   * tight and slightly low-contrast, hence the tracking and the `opsz` axis.
+   * Pair with a size utility at the call site; display type is the one place a
+   * screen legitimately needs its own scale.
+   */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    font-variation-settings:
+      "opsz" 40,
+      "SOFT" 20;
+  }
+
+  /*
+   * The all-caps micro label that opens most sections. Deliberately the only
+   * place letter-spacing is stretched — that is the cue that says "this is a
+   * label, not content", which lets the heading below it drop its qualifier.
+   */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /*
+   * Every dark panel in the app is this gradient — sidebar, hero card,
+   * completion card. Defined once so the three can never drift apart, and it
+   * sets its own foreground so callers cannot forget to.
+   */
+  .pine-panel {
+    background:
+      radial-gradient(
+        120% 90% at 12% 0%,
+        rgb(138 168 145 / 0.22) 0%,
+        transparent 58%
+      ),
+      linear-gradient(
+        168deg,
+        var(--color-panel) 0%,
+        var(--color-panel-deep) 100%
+      );
+    color: var(--color-panel-foreground);
+  }
+
+  /* Keyboard focus must survive the gradient, so it switches to almond. */
+  .pine-panel :focus-visible {
+    outline-color: var(--color-primary-soft);
+  }
+
+  /* An inset well — score breakdowns, chart grounds, the reading pane gutter. */
+  .surface-inset {
+    background-color: color-mix(
+      in srgb,
+      var(--color-primary-soft) 45%,
+      transparent
+    );
+    border-radius: var(--radius-sm);
+  }
+
+  /*
+   * A scroller with no visible bar. For SMALL overlay panes only — the
+   * notification list, a menu — where a platform scrollbar carves a grey gutter
+   * out of a 24rem popover and reads as chrome bolted onto the surface.
+   *
+   * Never put this on a page-length region. Hiding the bar hides the only
+   * indication of how much is left, which on a long document is a usability
+   * bug, not a refinement. It is tolerable here because the feed is capped at
+   * twenty and the rows are cut mid-height at the fold, which is its own "there
+   * is more" cue.
+   *
+   * Scrolling itself is untouched — wheel, trackpad, touch and keyboard all
+   * still work, which is what separates this from `overflow: hidden`.
+   */
+  .scroll-hidden {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* legacy Edge */
+  }
+  .scroll-hidden::-webkit-scrollbar {
+    display: none; /* WebKit / Blink */
+  }
+
+  /*
+   * Applied wherever the user's own writing is displayed — thesis excerpts,
+   * quoted passages, extracted paragraphs. Never used for UI chrome.
+   */
+  .prose-thesis {
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--color-ink);
+  }
+
+  /*
+   * Rendered check feedback (markdown). Deliberately restrained — this is
+   * supervisor prose, not a blog post. Spacing and weight only; no colour
+   * surprises.
+   */
+  .prose-report {
+    line-height: 1.65;
+  }
+  .prose-report > * + * {
+    margin-top: 0.75rem;
+  }
+  .prose-report p {
+    color: var(--color-ink);
+  }
+  .prose-report strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .prose-report ul,
+  .prose-report ol {
+    margin-left: 1.1rem;
+    list-style-position: outside;
+  }
+  .prose-report ul {
+    list-style-type: disc;
+  }
+  .prose-report ol {
+    list-style-type: decimal;
+  }
+  .prose-report li + li {
+    margin-top: 0.35rem;
+  }
+  .prose-report code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.85em;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.05rem 0.3rem;
+  }
+  .prose-report h1,
+  .prose-report h2,
+  .prose-report h3 {
+    font-size: var(--text-section-title);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+}
+
+/*
+ * Two keyframes the shadcn primitives depend on.
+ *
+ * caret-blink            — the fake caret in InputOTP, which renders its own
+ *                          because the real input is visually hidden.
+ * progress-indeterminate — the ingestion stage bar. Used when duration is
+ *                          genuinely unknown; a fabricated percentage that
+ *                          stalls at 70% is worse than an honest unknown.
+ */
+@keyframes caret-blink {
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%) scaleX(0.4);
+  }
+  50% {
+    transform: translateX(0%) scaleX(0.6);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.4);
+  }
+}
+
+/* Radix Accordion (P5 check cards) expands/collapses to its measured height. */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* A one-shot highlight flash when a check card flips working → done. */
+@keyframes card-settle {
+  0% {
+    background-color: var(--color-primary-soft);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@theme {
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+  --animate-progress-indeterminate: progress-indeterminate 1.4s ease-in-out
+    infinite;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-card-settle: card-settle 1.2s ease-out;
+}
+
+/* ---- Signature motion -------------------------------------------------
+ * Three opt-in animations, all driven by inline custom properties so one
+ * keyframe serves several components.
+ */
+
+/* The score gauge and any chart line share one draw. Components set `--dash`
+   (path length) and `--fill` (0–1) inline. */
+@keyframes arc-draw {
+  from {
+    stroke-dashoffset: var(--dash);
+  }
+  to {
+    stroke-dashoffset: calc(var(--dash) * (1 - var(--fill)));
+  }
+}
+
+/* The gauge's end-cap dot rides the arc. It is authored at the arc's starting
+   point and rotated into place — far more robust than animating cx/cy along a
+   path, since `offset-path` support is still uneven, and it is two lines. */
+@keyframes arc-sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(var(--angle));
+  }
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* A chart bar growing out of its baseline. Only a `from` — the bar's HEIGHT is
+   the datum and stays the static declaration, so a removed animation leaves a
+   true chart rather than an empty one. */
+@keyframes bar-draw {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+/* Something small ARRIVING in place — the notification count, a status dot.
+   Scale rather than rise: a 16px badge that translates reads as sliding out of
+   its corner, where the truth is that it did not exist a moment ago. */
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+/* Analysis in progress. A slow warm sweep rather than a spinner — the document
+   is being read, and reading is calm. */
+@keyframes shimmer {
+  from {
+    background-position: -160% 0;
+  }
+  to {
+    background-position: 260% 0;
+  }
+}
+
+/* Held at 0 for 140ms by the animation-delay, so a fast navigation never
+   flashes the wash. See `.link-pending`. */
+@keyframes link-pending-in {
+  to {
+    opacity: 1;
+  }
+}
+
+/*
+ * Count-up, with no JavaScript.
+ *
+ * `@property` makes --count a genuinely animatable integer, which `counter()`
+ * then renders. The static declaration is the FINAL value and the keyframe only
+ * supplies the `from`, so if @property is unsupported — or reduced motion strips
+ * the animation — the element still shows the true number rather than 0.
+ *
+ * The rendered digits live in ::after and are therefore invisible to assistive
+ * tech, so every caller must also emit the real value in an `sr-only` span.
+ * `.count-up` sets `speak: never` semantics by convention, not by CSS.
+ */
+@property --count {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes count-up {
+  from {
+    --count: 0;
+  }
+}
+
+@layer components {
+  .count-up {
+    --count: var(--count-to, 0);
+    counter-reset: count var(--count);
+    animation: count-up var(--duration-draw) var(--ease-draw) both;
+  }
+  .count-up::after {
+    content: counter(count);
+  }
+
+  .arc-draw {
+    stroke-dasharray: var(--dash);
+    stroke-dashoffset: calc(var(--dash) * (1 - var(--fill)));
+    animation: arc-draw var(--duration-draw) var(--ease-draw) both;
+  }
+
+  /* An area fill cannot be drawn, so it wipes in behind the line instead. */
+  .arc-draw-fill {
+    animation: fade-rise var(--duration-draw) var(--ease-draw) both;
+  }
+
+  .arc-sweep {
+    transform-box: view-box;
+    transform-origin: var(--origin);
+    transform: rotate(var(--angle));
+    animation: arc-sweep var(--duration-draw) var(--ease-draw) both;
+  }
+
+  .rise {
+    animation: fade-rise var(--duration-rise) var(--ease-settle) both;
+    animation-delay: var(--rise-delay, 0ms);
+  }
+
+  /*
+   * Staggered entrance for a list or grid. The parent gets `.rise-stagger` and
+   * each child is delayed by its index — set with `--i` inline, which is the
+   * one thing a Server Component can still do per-item without any JS.
+   * 60ms apart: fast enough not to feel like waiting, slow enough to read as
+   * assembly rather than a single block appearing.
+   */
+  .rise-stagger > * {
+    animation: fade-rise var(--duration-rise) var(--ease-settle) both;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+
+  /*
+   * A bar chart drawing itself. Same contract as `.rise-stagger` — parent gets
+   * the class, each child sets `--i` inline — but the bars SCALE out of the
+   * baseline instead of fading and rising, because a chart whose bars fade in
+   * is not a chart drawing, it is a chart appearing.
+   *
+   * `--i` takes a fraction, so a thirty-bar strip can land in under half a
+   * second (`--i: index * 0.25`) while a six-bar one keeps the full 60ms beat.
+   */
+  .bar-draw > * {
+    transform-origin: bottom;
+    animation: bar-draw var(--duration-draw) var(--ease-draw) both;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+
+  /* Re-key the element to replay it — see the notification badge. */
+  .pop {
+    animation: pop var(--duration-base) var(--ease-settle) both;
+  }
+
+  /* Soft lift on hover. Cards only — never on a row inside a dense table. */
+  .lift {
+    transition:
+      box-shadow var(--duration-quick) var(--ease-out-quiet),
+      transform var(--duration-quick) var(--ease-out-quiet),
+      border-color var(--duration-quick) var(--ease-out-quiet);
+  }
+  .lift:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
+  }
+
+  .shimmer {
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in srgb, var(--color-decor) 16%, transparent) 45%,
+      color-mix(in srgb, var(--color-decor) 28%, transparent) 50%,
+      color-mix(in srgb, var(--color-decor) 16%, transparent) 55%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 2.4s linear infinite;
+  }
+
+  /*
+   * Navigation feedback, driven by `useLinkStatus` in `LinkPending`.
+   *
+   * A click on a protected route is a redirect PLUS a render. Measured against
+   * production that is `/upload` 307 in 1.4s then `/sign-in` in 2.5s — four
+   * seconds during which the browser shows the OLD page with the NEW url in the
+   * bar. With no feedback the click reads as ignored, and the natural response
+   * is to click again, which abandons the in-flight navigation and restarts the
+   * wait. This is the acknowledgement.
+   *
+   * Absolutely positioned and inheriting the radius, so it costs no layout and
+   * can never shift the label underneath it — the trap the Next docs warn about
+   * with inline hints.
+   *
+   * The 140ms delay is load-bearing, not polish: a prefetched or cached
+   * navigation resolves before the wash is ever painted, so this appears only
+   * when there is genuinely something to wait for. It reuses the `shimmer`
+   * keyframe because "something is happening" already has a motion in this
+   * system and a second one would just be a different dialect.
+   */
+  .link-pending {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in srgb, var(--color-decor) 22%, transparent) 45%,
+      color-mix(in srgb, var(--color-decor) 38%, transparent) 50%,
+      color-mix(in srgb, var(--color-decor) 22%, transparent) 55%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .link-pending[data-pending] {
+    animation:
+      link-pending-in 180ms ease-out 140ms forwards,
+      shimmer 1.2s linear 140ms infinite;
+  }
+
+  /*
+   * Transform origins for the icon set's animatable parts.
+   *
+   * An SVG child transforms about the VIEWBOX origin by default, not about
+   * itself — so `scale(1.3)` on a seed at (17,17) throws it toward the corner
+   * rather than popping it in place. `fill-box` re-bases the transform on the
+   * element's own bounding box, which is what every gesture in
+   * `lib/motion/iconGestures.ts` assumes.
+   *
+   * It lives here rather than being set from JavaScript because it is a
+   * static fact about how these elements are drawn, and setting it inline on
+   * every play would mean writing and restoring a style on each hover. Inert
+   * until something actually transforms them.
+   */
+  [data-seed],
+  [data-accent] {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  /*
+   * Display headline reveal, word by word.
+   *
+   * The split happens on the SERVER — `WordReveal` emits one span per word —
+   * so the headline stays a Server Component and the whole sentence is real
+   * text in the DOM for assistive tech and text selection. GSAP's SplitText
+   * does the same job by mutating the DOM after hydration, which costs a
+   * client bundle and paints unsplit text for a frame first.
+   *
+   * Each word rides up out of a clipping mask. The padding / negative-margin
+   * pair on the mask is load-bearing: without it `overflow: hidden` shaves the
+   * descenders off g, y and p.
+   */
+  .word-rise > * {
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+    vertical-align: bottom;
+  }
+
+  .word-rise > * > * {
+    display: inline-block;
+    /* Pivot at the baseline's left edge, so the incoming rotation reads as the
+       word swinging up into the line rather than tumbling in place. */
+    transform-origin: 0 100%;
+    animation: word-rise var(--duration-display) var(--ease-draw) both;
+    animation-delay: calc(var(--i, 0) * 58ms + var(--word-delay, 0ms));
+  }
+}
+
+@keyframes word-rise {
+  from {
+    transform: translateY(1.05em) rotate(3.2deg);
+    opacity: 0;
+    /* Only ever runs on a display headline — a dozen words for 760ms once per
+       page load. Cheap here; would not be on a list. */
+    filter: blur(7px);
+  }
+}
+
+/*
+ * A highlight that wipes across the text it covers — and survives wrapping.
+ *
+ * The obvious build is an absolutely-positioned wash inside an `inline-block`
+ * mark, scaled on X. It is wrong for real prose: `inline-block` refuses to
+ * break, so a highlighted clause that does not fit jumps to its own line; and
+ * if the mark is `inline` instead, an absolutely-positioned child resolves
+ * against the FIRST line fragment only, so the wash covers one line of a
+ * two-line span.
+ *
+ * Painting the wash as a background gradient and animating `background-size`
+ * fixes both. `box-decoration-break: clone` gives every line fragment its own
+ * background box, so a span wraps and stays fully covered.
+ *
+ * The static declaration is the FULL size — the keyframe supplies only the
+ * `from` — so with animations removed the text is simply highlighted.
+ */
+@keyframes mark-wipe {
+  from {
+    background-size: 0% 100%;
+  }
+}
+
+@layer components {
+  .mark-wipe {
+    background-image: linear-gradient(var(--mark-wash), var(--mark-wash));
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    border-radius: 2px;
+    animation: mark-wipe var(--duration-draw) var(--ease-draw) both;
+  }
+
+  /* Tones live here, not in the component, so no raw colour reaches a tsx
+     file. These mirror `components/viewer/HighlightBox.tsx`. */
+  .mark-content {
+    --mark-wash: var(--color-highlight);
+  }
+  .mark-grammar {
+    --mark-wash: color-mix(in srgb, var(--color-warning) 16%, transparent);
+    border-bottom: 2px solid var(--color-warning);
+  }
+  .mark-ai {
+    --mark-wash: color-mix(in srgb, var(--color-ai) 15%, transparent);
+    border-bottom: 2px solid var(--color-ai);
+  }
+
+  /*
+   * Extraction, not a finding.
+   *
+   * Pine rather than one of the status tones, and that is the semantic
+   * contract doing its job: lifting a rule out of a handbook is STRUCTURE, not
+   * a verdict on anything. Honey here would read as "this sentence is a
+   * problem", which is the opposite of what it means.
+   */
+  .mark-rule {
+    --mark-wash: color-mix(in srgb, var(--color-primary) 11%, transparent);
+    border-bottom: 2px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+}
+
+/*
+ * Lenis' required stylesheet, inlined rather than imported from
+ * `lenis/dist/lenis.css`. Tailwind v4 resolves `@import` at build time and the
+ * package's CSS would land above the theme layer, where `scroll-behavior` gets
+ * overridden. These four rules are the whole file.
+ *
+ * They are inert until Lenis mounts and stamps `.lenis` onto <html>, so the
+ * `(app)` route group — which never mounts it — is untouched.
+ */
+/*
+ * Holds mount-triggered CSS animations at their first frame until the element
+ * is actually on screen.
+ *
+ * `.arc-draw` and `.count-up` start when their element mounts. For anything
+ * below the fold that means the gauge finishes drawing while nobody is looking
+ * at it, and the visitor scrolls down to a static arc and a number that never
+ * counted. `RevealOnView` adds this class, then removes it on entry.
+ *
+ * Applied from JavaScript ONLY — never authored into markup. In the HTML it
+ * would strand the gauge blank for anyone whose JS fails, which is the exact
+ * failure the reduced-motion block above works to avoid. It is also redundant
+ * under reduced motion, where those animations are removed outright.
+ */
+.await-view .arc-draw,
+.await-view .arc-draw-fill,
+.await-view .arc-sweep,
+.await-view .count-up,
+.await-view .rise,
+.await-view .rise-stagger > *,
+.await-view .bar-draw > *,
+.await-view .word-rise > * > *,
+.await-view .mark-wipe {
+  animation-play-state: paused;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/*
+ * Global reduced-motion honouring. Components additionally read the
+ * useReducedMotion() hook so Framer Motion variants collapse to a no-op
+ * rather than merely running instantly.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /*
+   * Clamping the duration is not enough for the draw animations: a 0.01ms
+   * `arc-draw` still renders one frame from a fully hidden arc, so the gauge
+   * flashes blank. They are removed outright and their END state applied
+   * statically — the gauge and chart appear complete, never empty.
+   */
+  .arc-draw,
+  .arc-draw-fill,
+  .arc-sweep,
+  .rise,
+  .rise-stagger > *,
+  .bar-draw > *,
+  .count-up,
+  .pop,
+  .shimmer,
+  .word-rise > * > *,
+  .mark-wipe {
+    animation: none !important;
+  }
+
+  /* The wash still has to APPEAR — it is the only signal that a click was
+     received, and a four-second wait with no acknowledgement is worse without
+     motion, not better. It simply stops travelling. */
+  .link-pending[data-pending] {
+    animation: none !important;
+    opacity: 1;
+    background-image: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-decor) 20%, transparent) 0%,
+      color-mix(in srgb, var(--color-decor) 28%, transparent) 100%
+    );
+  }
+
+  /* The wash is the finding's location, not decoration — clearing the
+     animation must leave the text highlighted, never bare. */
+  .mark-wipe {
+    background-size: 100% 100%;
+  }
+
+  /* Same reasoning as `.arc-draw` above: a 0.01ms word-rise still paints one
+     frame of an empty headline. Removed outright, end state applied. */
+  .word-rise > * > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* --count keeps its static declaration, which is the final value. */
+  .rise-stagger > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Same reasoning again: the bar's height is the datum, so clearing the
+     scale leaves the chart at its true values rather than flat. */
+  .bar-draw > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  .lift:hover {
+    transform: none;
+  }
+
+  .arc-draw {
+    stroke-dashoffset: calc(var(--dash) * (1 - var(--fill)));
+  }
+
+  .arc-sweep {
+    transform: rotate(var(--angle));
+  }
+
+  .rise,
+  .arc-draw-fill {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* The shimmer's job is "something is happening". Without motion, a static
+     honey wash says the same thing. */
+  .shimmer {
+    background-image: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-decor) 14%, transparent) 0%,
+      color-mix(in srgb, var(--color-decor) 20%, transparent) 100%
+    );
+  }
+}

@@ -1,0 +1,1624 @@
+{
+  "common": {
+    "appName": "Scriptor",
+    "tagline": "AI thesis supervision",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "remove": "Remove",
+    "close": "Close",
+    "back": "Back",
+    "retry": "Try again",
+    "loading": "Loading",
+    "signOut": "Sign out",
+    "settings": "Settings",
+    "admin": "Admin",
+    "status": {
+      "none": "Not started",
+      "generating": "In progress",
+      "done": "Complete",
+      "error": "Failed"
+    }
+  },
+  "landing": {
+    "tagline": "AI thesis supervision that reads your work end to end.",
+    "startAnalysis": "Start an analysis",
+    "signIn": "Sign in",
+    "eyebrow": "AI thesis supervision",
+    "headline": "Every note your supervisor would make, anchored to the page.",
+    "subhead": "Upload your thesis. Scriptor reads it end to end, scores it against your department’s criteria, and shows you the exact words behind every finding.",
+    "pillars": {
+      "anchored": {
+        "title": "Anchored to the page",
+        "body": "Every finding points at the words that caused it, highlighted in your own PDF."
+      },
+      "criteria": {
+        "title": "Your department’s criteria",
+        "body": "Upload the marking guide and the checks follow it, not a generic rubric."
+      },
+      "viva": {
+        "title": "Ready for the viva",
+        "body": "An action plan and practice questions drawn from what your text actually says."
+      }
+    },
+    "nav": {
+      "primary": "Main navigation",
+      "checks": "What we check",
+      "howItWorks": "How it works",
+      "signIn": "Sign in",
+      "start": "Start an analysis",
+      "skipToContent": "Skip to content"
+    },
+    "specimen": {
+      "page": "p. 47",
+      "check": "Logical errors",
+      "severity": "High",
+      "quoteBefore": "The results demonstrate that flexible scheduling raises output ",
+      "quoteHighlight": "in every industry",
+      "quoteAfter": ", regardless of sector or firm size.",
+      "findingTitle": "Hasty generalisation",
+      "findingBody": "The study you cite samples one industry over eighteen months. It cannot carry a claim about every industry.",
+      "caption": "Every finding points at the words that caused it — highlighted in your own PDF."
+    },
+    "footer": {
+      "secondary": "Footer",
+      "blurb": "Scriptor reads your thesis end to end and anchors every finding to the passage that caused it.",
+      "checks": "What we check",
+      "signIn": "Sign in",
+      "start": "Start an analysis",
+      "copyright": "© {year} Scriptor. All rights reserved."
+    },
+    "gallery": {
+      "eyebrow": "The report",
+      "headline": "Everything it hands back.",
+      "subhead": "One upload returns a scored report, every finding anchored to the sentence that caused it, your bibliography reconciled against your citations, a revision list, and the questions your committee is most likely to ask.",
+      "score": {
+        "caption": "Academic score across nine checks"
+      },
+      "findings": {
+        "citation": {
+          "page": "p. 12",
+          "check": "Citation style",
+          "severity": "Medium",
+          "before": "as several authors have noted ",
+          "mark": "(Weber et al, 2019)",
+          "after": " the effect is not uniform.",
+          "title": "Missing period after et al."
+        },
+        "gendering": {
+          "page": "p. 31",
+          "check": "Gendering",
+          "severity": "Low",
+          "before": "Each researcher must submit ",
+          "mark": "his",
+          "after": " findings before the deadline.",
+          "title": "Generic masculine"
+        },
+        "density": {
+          "page": "p. 58",
+          "check": "Source density",
+          "severity": "High",
+          "before": "This framework was first developed to explain ",
+          "mark": "institutional isomorphism in emerging markets",
+          "after": ".",
+          "title": "Unsupported: uncredited idea"
+        },
+        "terminology": {
+          "page": "p. 64",
+          "check": "Terminology",
+          "severity": "Medium",
+          "before": "the study measures ",
+          "mark": "employee wellbeing",
+          "after": ", defined earlier as job satisfaction.",
+          "title": "Term shifts meaning"
+        }
+      },
+      "references": {
+        "broken": {
+          "citation": "Hollmann, K. (2021). Distributed teams and output. doi:10.1041/xxc.2021.88",
+          "health": "Broken URL"
+        },
+        "uncited": {
+          "citation": "Nakamura, S. (2018). Measurement error in self-report studies.",
+          "health": "Never cited"
+        },
+        "verified": {
+          "citation": "Weber, A. & Lund, P. (2019). Autonomy at scale. J. Org. Behav.",
+          "health": "Verified"
+        }
+      },
+      "checks": {
+        "coherence": "Coherence",
+        "argumentation": "Argumentation"
+      },
+      "defense": {
+        "label": "Likely question",
+        "question": "You treat self-reported productivity and manager assessment as equivalent. What would change in your conclusions if they diverged?",
+        "difficulty": "Hard"
+      },
+      "todos": {
+        "label": "Revision list",
+        "a": "Regenerate the table of contents",
+        "b": "Add a source for the claim on p. 58",
+        "c": "Define “employee wellbeing” before first use"
+      }
+    },
+    "catalogue": {
+      "eyebrow": "The check catalogue",
+      "headline": "Nine checks. Each one reads only what it needs.",
+      "subhead": "All nine run by default, on every document type. Seven read the whole thesis at once — that is how a term that quietly shifts meaning between chapters gets caught. Two read one page at a time.",
+      "modes": {
+        "allPages": {
+          "label": "Whole document"
+        },
+        "individualPages": {
+          "label": "Page by page"
+        }
+      },
+      "checks": {
+        "citationStyle": {
+          "name": "Citation Style",
+          "description": "Checks every in-text citation against the declared citation style and reports each deviation with the exact text that is wrong."
+        },
+        "argumentation": {
+          "name": "Argumentation Analysis",
+          "description": "Examines whether claims are supported by evidence, whether the reasoning holds, and where an argument is asserted rather than shown."
+        },
+        "coherence": {
+          "name": "Coherence",
+          "description": "Assesses whether the thesis flows as a single line of thought — transitions, referential clarity, and sections that contradict one another."
+        },
+        "logicalErrors": {
+          "name": "Logical Errors",
+          "description": "Page-by-page detection of formal and informal fallacies: non sequiturs, circular reasoning, false dilemmas and overgeneralisation."
+        },
+        "coverPage": {
+          "name": "Cover Page",
+          "description": "Verifies the title page carries every element a university requires and that nothing is missing or malformed."
+        },
+        "chapterOrder": {
+          "name": "Chapter Order",
+          "description": "Compares the table of contents against the actual chapter sequence and flags numbering gaps, mismatches and structural omissions."
+        },
+        "gendering": {
+          "name": "Gendering & Inclusivity",
+          "description": "Page-by-page review of gendered and exclusionary language, applying the conventions of the document’s own language variant."
+        },
+        "terminology": {
+          "name": "Terminology",
+          "description": "Finds terms used inconsistently, defined late or never, or silently shifting meaning between chapters."
+        },
+        "sourceDensity": {
+          "name": "Source Density",
+          "description": "Locates passages making substantive claims with too little citation support, and passages so dense with citation they lack the author’s own voice."
+        }
+      },
+      "demos": {
+        "citation": {
+          "style": "APA 7",
+          "caption": "Declared style",
+          "ok": "Matches style",
+          "bad": "Deviates from style",
+          "a": {
+            "text": "Weber, A., & Lund, P. (2019). Autonomy at scale. Journal of Organizational Behavior, 40(3), 291–308."
+          },
+          "b": {
+            "text": "Hollmann, K. (2021). Distributed teams and output. Work & Society, 12(1), 44–61."
+          },
+          "c": {
+            "text": "Nakamura, S. 2018, Measurement error in self-report studies, Methods Quarterly, vol 9, pp 12-30."
+          },
+          "tally": "of {total} entries match the declared style"
+        },
+        "logical": {
+          "before": "The framework is the most reliable measure of institutional change because ",
+          "mark": "it yields the most reliable results",
+          "after": " across the cases examined.",
+          "note": "Circular reasoning — the claim assumes the conclusion it is meant to establish."
+        },
+        "density": {
+          "caption": "Citations per page across the body.",
+          "flagged": "{flagged, plural, one {passage carries claims with no citation behind it} other {passages carry claims with no citation behind them}}",
+          "alt": "Citation density across thirty body pages. {flagged, plural, one {# passage makes claims with no citation behind it} other {# passages make claims with no citation behind them}}."
+        }
+      }
+    },
+    "anchored": {
+      "eyebrow": "Anchored",
+      "headline": "Every finding sits on the words that caused it.",
+      "subhead": "Scriptor stores a rectangle for every word in your thesis. So a finding never points at a page number — it points at the exact span, highlighted in your own PDF.",
+      "viewer": {
+        "page": "Page 47 of 118",
+        "zoom": "120%",
+        "findingCount": "3 findings",
+        "sidebar": "On this page",
+        "heading": "4.2 Limitations of the current evidence",
+        "p1a": "The composition of the sample is the first constraint. Eleven of the fourteen studies reviewed here ",
+        "mark1": "draws exclusively",
+        "p1b": " on knowledge-sector firms with fewer than two hundred employees.",
+        "p2a": "The distinction between measured and perceived output was ",
+        "mark2": "first articulated as a problem of instrument validity rather than of effort",
+        "p2b": ", and the literature has not resolved it since.",
+        "p3a": "It is important to note that ",
+        "mark3": "these findings should be interpreted with caution, as the complex interplay of factors involved makes definitive conclusions challenging",
+        "p3b": ".",
+        "hint": "Select a finding to see where it sits on the page."
+      },
+      "findings": {
+        "a": {
+          "type": "Grammar",
+          "quote": "studies … draws exclusively",
+          "note": "Plural subject takes “draw”."
+        },
+        "b": {
+          "type": "Source density",
+          "quote": "first articulated as a problem of instrument validity",
+          "note": "Reads as another author’s idea, with no citation behind it."
+        },
+        "c": {
+          "type": "AI signal",
+          "quote": "interpreted with caution, as the complex interplay…",
+          "note": "Hedging boilerplate. Strong markers of generated text."
+        }
+      },
+      "facts": {
+        "a": {
+          "value": "~50,000",
+          "body": "words boxed per thesis. A finding resolves to the span that caused it, not to a page number."
+        },
+        "b": {
+          "value": "8 page types",
+          "body": "Every page is classified — cover, contents, body, bibliography — so each check reads only what it needs."
+        },
+        "c": {
+          "value": "Any zoom",
+          "body": "Coordinates are stored in the document’s own units, so a highlight stays on the right words at any scale."
+        }
+      }
+    },
+    "references": {
+      "eyebrow": "Reference health",
+      "headline": "The problem isn’t your two lists. It’s what falls between them.",
+      "subhead": "Scriptor reads every citation in your text and every entry in your bibliography, then joins them. What doesn’t match is the finding — sources you cited but never listed, entries you listed but never cited, and links that no longer resolve.",
+      "counters": {
+        "total": {
+          "label": "References",
+          "value": "84"
+        },
+        "verified": {
+          "label": "Verified",
+          "value": "76"
+        },
+        "issues": {
+          "label": "Issues",
+          "value": "6"
+        },
+        "uncited": {
+          "label": "Never cited",
+          "value": "2"
+        }
+      },
+      "tabs": {
+        "sources": "Sources",
+        "issues": "Issues",
+        "uncited": "Never cited"
+      },
+      "rows": {
+        "sources": {
+          "a": {
+            "citation": "Weber, A. & Lund, P. (2019). Autonomy at scale: evidence from four cohorts. Journal of Organizational Behavior, 40(3), 288–307.",
+            "badge": "Verified",
+            "note": "Matched to 7 citations. DOI resolves."
+          },
+          "b": {
+            "citation": "Nakamura, S. (2018). Measurement error in self-report productivity studies. Work & Stress, 32(1), 44–61.",
+            "badge": "Verified",
+            "note": "Matched to 3 citations."
+          },
+          "c": {
+            "citation": "Hollmann, K. (2021). Distributed teams and output. doi:10.1041/xxc.2021.88",
+            "badge": "Broken link",
+            "note": "The DOI does not resolve. Check the identifier against the publisher’s record."
+          },
+          "d": {
+            "citation": "Ferreira, M. (2020). Scheduling autonomy in manufacturing. Unpublished manuscript.",
+            "badge": "Needs correction",
+            "note": "No publisher or access route. APA 7 requires a retrieval source for unpublished work."
+          }
+        },
+        "issues": {
+          "a": {
+            "citation": "(Aldridge, 2017)",
+            "badge": "Not in bibliography",
+            "note": "Cited on pages 31 and 58. No matching entry in your reference list."
+          },
+          "b": {
+            "citation": "Hollmann, K. (2021). doi:10.1041/xxc.2021.88",
+            "badge": "Broken link",
+            "note": "The DOI does not resolve, so the source cannot be checked."
+          },
+          "c": {
+            "citation": "(Weber et al., 2019)",
+            "badge": "Year mismatch",
+            "note": "Your text says 2019; the bibliography entry says 2018."
+          }
+        },
+        "uncited": {
+          "a": {
+            "citation": "Bergström, L. (2016). Flexible work arrangements in the Nordic model. Scandinavian Journal of Management, 32(4), 201–214.",
+            "badge": "Never cited",
+            "note": "Listed in your bibliography, but nothing in your text points to it."
+          },
+          "b": {
+            "citation": "Okonkwo, T. (2022). Remote coordination costs. Organization Science, 33(2), 640–658.",
+            "badge": "Never cited",
+            "note": "Listed in your bibliography, but nothing in your text points to it."
+          }
+        }
+      },
+      "directions": {
+        "missing": {
+          "title": "Cited, but never listed",
+          "body": "A reference in your text with no entry behind it. Examiners check these, and a missing entry reads as a source you never actually consulted."
+        },
+        "uncited": {
+          "title": "Listed, but never cited",
+          "body": "An entry in your bibliography that nothing in your text points to. Usually a source dropped during revision and never removed from the list."
+        }
+      }
+    },
+    "requirements": {
+      "eyebrow": "Your own rules",
+      "headline": "Your handbook is prose. A gradeable rule is not.",
+      "subhead": "Upload the guide your faculty actually issued. Scriptor reads it clause by clause and lifts out each requirement it can grade — keeping the sentence it came from, so you can check its work.",
+      "points": {
+        "trace": {
+          "title": "Every rule keeps its source",
+          "body": "Select a rule and the clause that produced it lights up in your handbook. Nothing is asserted without the sentence behind it."
+        },
+        "modal": {
+          "title": "“Shall” and “should” are not the same word",
+          "body": "Mandatory comes from your handbook’s own verb, not from a guess about importance. A missed must can get a thesis returned unmarked; a missed should cannot."
+        }
+      },
+      "file": {
+        "name": "MSc_Handbook_2026.pdf",
+        "status": "Extracted",
+        "heading": "3. Submission requirements",
+        "rulesLabel": "Gradeable rules"
+      },
+      "labels": {
+        "required": "Required",
+        "recommended": "Recommended",
+        "met": "Met",
+        "notMet": "Not met",
+        "because": "from"
+      },
+      "clauses": {
+        "a": {
+          "num": "3.1",
+          "before": "The dissertation ",
+          "mark": "shall be between 12,000 and 15,000 words",
+          "after": " in length, excluding the reference list and any appendices."
+        },
+        "b": {
+          "num": "3.2",
+          "before": "Every submission ",
+          "mark": "must be accompanied by a signed and dated declaration of authorship",
+          "after": ", bound immediately before the table of contents."
+        },
+        "c": {
+          "num": "3.3",
+          "before": "Candidates ",
+          "mark": "are required to use the Harvard convention consistently",
+          "after": " throughout, including in figure and table captions."
+        },
+        "d": {
+          "num": "3.4",
+          "before": "Figures ",
+          "mark": "should carry their captions below the figure",
+          "after": "; tables should carry theirs above."
+        },
+        "e": {
+          "num": "3.5",
+          "before": "The abstract ",
+          "mark": "must not exceed 300 words",
+          "after": " and is not included in the word count."
+        },
+        "f": {
+          "num": "3.6",
+          "before": "Chapters ",
+          "mark": "should be numbered with Arabic numerals",
+          "after": " beginning at the introduction."
+        }
+      },
+      "rules": {
+        "a": {
+          "title": "Length between 12,000 and 15,000 words, excluding references",
+          "trigger": "shall",
+          "evidence": "13,847 words."
+        },
+        "b": {
+          "title": "Signed, dated declaration of authorship before the contents",
+          "trigger": "must",
+          "evidence": "No declaration page found."
+        },
+        "c": {
+          "title": "Harvard referencing used consistently, captions included",
+          "trigger": "are required to",
+          "evidence": "17 citations use APA parenthetical form."
+        },
+        "d": {
+          "title": "Figure captions below the figure",
+          "trigger": "should",
+          "evidence": "38 figures, all captioned below."
+        },
+        "e": {
+          "title": "Abstract of 300 words or fewer",
+          "trigger": "must",
+          "evidence": "284 words."
+        },
+        "f": {
+          "title": "Arabic chapter numbering from the introduction",
+          "trigger": "should",
+          "evidence": "Numbering starts at 1. Introduction."
+        }
+      }
+    },
+    "defense": {
+      "eyebrow": "Defense studio",
+      "headline": "Answer it badly in private, not in the viva.",
+      "subhead": "Scriptor generates the questions your committee is most likely to ask, drawn from what your text actually claims. You answer them, get scored, and answer again — and every attempt is kept, so you can see the answer getting better.",
+      "question": "You treat self-reported productivity and manager assessment as equivalent measures. What would change in your conclusions if they diverged?",
+      "difficulty": "Hard",
+      "sourceLabel": "From your thesis, p. 47",
+      "answerLabel": "Your answer",
+      "scoreLabel": "Score",
+      "attemptsLabel": "Attempt",
+      "attempts": {
+        "a": {
+          "label": "1st",
+          "date": "2 Mar",
+          "answer": "I think they measure broadly similar things, so the conclusions would probably still hold. The literature I reviewed treats them more or less interchangeably.",
+          "feedback": "You restate the assumption the question is challenging. The examiner already knows the literature conflates them — they are asking you to defend doing it, not to repeat that it is done."
+        },
+        "b": {
+          "label": "2nd",
+          "date": "9 Mar",
+          "answer": "They could diverge if managers reward visibility rather than output. That would inflate manager scores for on-site staff and depress them for remote staff.",
+          "feedback": "Better — you name a mechanism instead of asserting equivalence. Now finish it: say what that mechanism does to your finding. Does the effect shrink, vanish, or reverse?"
+        },
+        "c": {
+          "label": "3rd",
+          "date": "16 Mar",
+          "answer": "They diverge precisely where my claim is strongest. If managers reward visibility, the remote cohort is systematically under-scored, so my measured effect is a floor rather than an estimate — and Chapter 5 should therefore be stated as directional, not as a magnitude.",
+          "feedback": "Strong. You name the mechanism, its direction, and what it costs the claim, then adjust the claim rather than defending it whole. This is a defensible answer."
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "Straight answers",
+      "headline": "The things you actually want to know before uploading a year of work.",
+      "subhead": "No hedging. Where the answer is a limitation, it says so.",
+      "groups": {
+        "data": {
+          "label": "Your work and your data",
+          "items": {
+            "a": {
+              "q": "Is my thesis used to train anything?",
+              "a": "No. Sharing is off by default and stays off unless you deliberately turn it on for an upload. Your file sits in a private bucket — no public link to it exists anywhere, and the only way to open it is a short-lived signed URL created for your session."
+            },
+            "b": {
+              "q": "Can anyone else read my thesis?",
+              "a": "No. Ownership is enforced in the database, not just hidden in the interface: every row carries the account it belongs to, and there is no query — from the app or otherwise — that returns another person’s paper. Your supervisor cannot see it unless you show them."
+            },
+            "c": {
+              "q": "How long do you keep my file?",
+              "a": "The source document is deleted 90 days after upload by default, and a scheduled sweep removes it from storage as well as from the database. You can switch that off for a particular upload, or change the default for your account in settings."
+            },
+            "d": {
+              "q": "Can I delete everything?",
+              "a": "Yes, and it cascades. Deleting a paper removes its pages, its per-word data, every finding, every reference and the stored file itself. Nothing is kept behind for analytics."
+            }
+          }
+        },
+        "how": {
+          "label": "How the analysis works",
+          "items": {
+            "a": {
+              "q": "What can I upload?",
+              "a": "A PDF or a Word document, up to 50 MB. Anything longer than the limit for your document type is rejected before any analysis starts, so you are told immediately rather than after a long wait."
+            },
+            "b": {
+              "q": "Which citation styles do you know?",
+              "a": "Ten: APA 6 and 7, MLA 9, Chicago 17, Harvard, Vancouver, Oxford, Turabian, IEEE and ISO 690. Citations are checked against the style your document declares, so a citation that is correct in a different style still counts as a deviation."
+            },
+            "c": {
+              "q": "What if a check fails halfway through?",
+              "a": "It retries, waiting longer each time, so a brief provider outage does not lose your analysis. Optional extras are separated from the core: if defense questions or AI detection never succeed, your grammar and citation results still complete and are still shown."
+            },
+            "d": {
+              "q": "What does it cost?",
+              "a": "Nothing at the moment. Scriptor is still in development, there is no billing, and every feature is switched on for every upload. When that changes it will be announced rather than quietly introduced."
+            }
+          }
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Ready when you are",
+      "headline": "Find out what a reader will say before one does.",
+      "subhead": "Upload your thesis and get it back read end to end, with every finding sitting on the words that caused it.",
+      "note": "Free while Scriptor is in development. No card, no trial clock.",
+      "steps": {
+        "compat": {
+          "title": "Length and format, first",
+          "body": "An unusable file is rejected in seconds — before any analysis is spent on it — so you find out immediately rather than after a long silence."
+        },
+        "parse": {
+          "title": "Every page classified, every word placed",
+          "body": "Cover, contents, body, bibliography. Each word gets a position on its page, which is the step that lets a finding point at text instead of at a page number."
+        },
+        "analysis": {
+          "title": "Nine checks, plus whatever your handbook adds",
+          "body": "Each check reads only the page types it needs. Your own extracted requirements are graded alongside them, in the same report."
+        }
+      }
+    }
+  },
+  "nav": {
+    "papers": "My Papers",
+    "upload": "New Analysis",
+    "requirements": "Requirements",
+    "settings": "Settings",
+    "admin": {
+      "overview": "Overview",
+      "checks": "Checks",
+      "evals": "Evals",
+      "analyses": "Analyses",
+      "users": "Users"
+    },
+    "groups": {
+      "workspace": "Workspace",
+      "operations": "Operations",
+      "tuning": "Tuning"
+    },
+    "dashboard": "Dashboard"
+  },
+  "shell": {
+    "primaryNavigation": "Primary navigation",
+    "adminNavigation": "Admin navigation",
+    "breadcrumb": "Breadcrumb",
+    "accountMenu": "Account menu",
+    "notifications": {
+      "label": "Notifications",
+      "title": "Notifications",
+      "emptyTitle": "No notifications",
+      "emptyDescription": "Updates about your analyses, references and deadlines will appear here.",
+      "unread": "{count, plural, =0 {No unread notifications} one {# unread notification} other {# unread notifications}}",
+      "markAllRead": "Mark all read",
+      "delete": "Delete notification",
+      "loadingTitle": "Loading…",
+      "unreadItem": "Unread"
+    },
+    "theme": {
+      "label": "Appearance",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "toggleSidebar": "Toggle sidebar",
+    "skipToContent": "Skip to content"
+  },
+  "auth": {
+    "signIn": {
+      "title": "Sign in to Scriptor",
+      "subtitle": "We'll email you a sign-in code.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@university.edu",
+      "continue": "Continue",
+      "or": "or",
+      "continueWithGoogle": "Continue with Google",
+      "invalidEmail": "Enter a valid email address.",
+      "rateLimited": "Too many attempts. Try again in an hour.",
+      "legal": "By continuing you agree to our <terms>Terms</terms> and <privacy>Privacy Policy</privacy>."
+    },
+    "verify": {
+      "title": "Check your email",
+      "subtitle": "We sent a sign-in link to {email}",
+      "hint": "Click the link in that email to finish signing in. You can close this tab once you do.",
+      "resent": "Sent again — check your inbox.",
+      "resend": "Resend link",
+      "resendIn": "Resend link in {seconds}s",
+      "differentEmail": "Use a different email"
+    },
+    "callbackError": {
+      "title": "Sign-in link didn't work",
+      "description": "That link has expired or has already been used. Request a new code to continue.",
+      "action": "Back to sign in"
+    }
+  },
+  "upload": {
+    "title": "New Analysis",
+    "description": "Upload your thesis and we'll review it.",
+    "reassurance": "This usually takes under a minute. You can close this page — we'll email you.",
+    "step1": {
+      "title": "Your document",
+      "description": "A PDF with selectable text. Scanned documents can't be analysed."
+    },
+    "step2": {
+      "title": "Document details",
+      "description": "This tells each check which rules to apply."
+    },
+    "step3": {
+      "title": "Checks",
+      "description": "All checks run by default. Turn off anything you don't need."
+    },
+    "step4": {
+      "title": "Privacy",
+      "description": "You stay in control of your document."
+    },
+    "dropzone": {
+      "prompt": "Drop your PDF here or click to browse",
+      "constraints": "PDF · up to 50 MB",
+      "clear": "Remove file",
+      "notPdf": "That's not a PDF. Please upload a .pdf file.",
+      "tooLarge": "That file is over 50 MB. Try compressing it first.",
+      "empty": "That file is empty."
+    },
+    "settings": {
+      "documentType": "Document type",
+      "documentTypePlaceholder": "Choose a type",
+      "maxChars": "up to about {count}k characters",
+      "language": "Language",
+      "spelling": "Spelling",
+      "citationStyle": "Citation style",
+      "citationAuto": "I'm not sure — detect it",
+      "locale": {
+        "EN": "English",
+        "DE": "German"
+      },
+      "spellingVariant": {
+        "EN_UK": "British (colour, -ise)",
+        "EN_US": "American (color, -ize)",
+        "DE_DE": "Germany (ß)",
+        "DE_CH": "Switzerland (ss)"
+      },
+      "citationStyleOption": {
+        "APA_7": "APA 7th edition",
+        "APA_6": "APA 6th edition",
+        "MLA_9": "MLA 9th edition",
+        "CHICAGO_17": "Chicago 17th edition",
+        "HARVARD": "Harvard",
+        "VANCOUVER": "Vancouver",
+        "OXFORD": "Oxford",
+        "TURABIAN": "Turabian",
+        "IEEE": "IEEE",
+        "ISO_690": "ISO 690"
+      }
+    },
+    "checks": {
+      "selectedCount": "{count} of {total} selected",
+      "selectAll": "Select all",
+      "clear": "Clear",
+      "moreInfo": "What this check does"
+    },
+    "privacy": {
+      "autoDelete": "Delete my document automatically after 90 days",
+      "autoDeleteHint": "Your analysis stays; only the original file is removed.",
+      "emailResults": "Email me when the analysis is ready",
+      "emailResultsHint": "Analyses can take a few minutes."
+    },
+    "footer": {
+      "noFile": "Choose a file to continue",
+      "start": "Start upload",
+      "uploading": "Uploading",
+      "uploadingPercent": "Uploading · {percent}%"
+    },
+    "stages": {
+      "PARSE": {
+        "label": "Reading your document",
+        "description": "Extracting text and the position of every word."
+      },
+      "IDENTIFY_PAGES": {
+        "label": "Identifying sections",
+        "description": "Finding the cover, contents, body and bibliography."
+      },
+      "COMPATIBILITY": {
+        "label": "Checking compatibility",
+        "description": "Making sure we can analyse this document properly."
+      },
+      "POST_PROCESSING": {
+        "label": "Preparing analysis",
+        "description": "Getting your checks ready to run."
+      }
+    },
+    "ready": {
+      "title": "Your document is ready.",
+      "description": "We read it end to end and everything looks analysable.",
+      "startAnalysis": "Start analysis",
+      "comingSoon": "Available in the next release"
+    },
+    "stats": {
+      "pages": "Pages",
+      "words": "Words",
+      "language": "Language",
+      "citationStyle": "Citation style",
+      "unknown": "Unknown",
+      "notDetected": "Not detected",
+      "locale": {
+        "EN": "English",
+        "DE": "German"
+      },
+      "citationStyle_APA_7": "APA 7",
+      "section": {
+        "COVER": "Cover",
+        "COVER_plural": "{count} cover pages",
+        "ABSTRACT": "Abstract",
+        "ABSTRACT_plural": "{count} abstract pages",
+        "TOC": "Contents",
+        "TOC_plural": "{count} contents pages",
+        "BODY": "1 body page",
+        "BODY_plural": "{count} body pages",
+        "BIBLIOGRAPHY": "Bibliography",
+        "BIBLIOGRAPHY_plural": "{count} bibliography pages",
+        "APPENDIX": "Appendix",
+        "APPENDIX_plural": "{count} appendix pages"
+      }
+    },
+    "incompatible": {
+      "uploadDifferent": "Upload a different file",
+      "contactSupport": "Contact support",
+      "SCANNED_PDF": {
+        "title": "This looks like a scanned document.",
+        "fix": "We need selectable text to analyse your writing. Export a fresh PDF from Word, Google Docs or LaTeX rather than scanning a printed copy. If you only have a scan, run it through an OCR tool first and upload the result."
+      },
+      "TOO_SHORT": {
+        "title": "This document is too short to analyse.",
+        "fix": "We need at least 500 words to say anything useful about structure or argument. If you uploaded an excerpt, try the full document instead."
+      },
+      "TOO_LONG": {
+        "title": "This document is longer than we can analyse.",
+        "fix": "Our limit is 48,000 words. If your thesis includes large appendices, try uploading just the main body — the appendix rarely needs review."
+      },
+      "EXCEEDS_TYPE_LIMIT": {
+        "title": "This is longer than expected for the document type you chose.",
+        "fix": "You selected a type with a lower length limit than this document. Change the document type to match your work and upload again."
+      },
+      "TOO_MANY_PAGES": {
+        "title": "This document has too many pages.",
+        "fix": "Our limit is 300 pages. If a large part is appendices or figures, upload the main body on its own."
+      },
+      "NO_BODY_CONTENT": {
+        "title": "We couldn't find the main body of your thesis.",
+        "fix": "Every page looked like front matter, references or appendix material. Check you uploaded the complete document rather than just the front pages."
+      },
+      "UNREADABLE": {
+        "title": "We couldn't read this file.",
+        "fix": "No text came out of it at all. The file may be corrupted, password-protected or empty. Try re-exporting it and uploading again."
+      }
+    },
+    "requirements": {
+      "title": "Custom requirements",
+      "description": "Also check this thesis against your own university or journal rules.",
+      "toggle": "Use my custom requirements"
+    }
+  },
+  "papers": {
+    "title": "My Papers",
+    "description": "Your theses and their review history.",
+    "newAnalysis": "New analysis",
+    "emptyTitle": "No papers yet",
+    "emptyDescription": "Upload your thesis to get your first review.",
+    "openReview": "Open",
+    "uploadedOn": "Uploaded {date}",
+    "processing": "Processing",
+    "ready": "Ready",
+    "analysing": "Analysing",
+    "untitled": "Untitled paper",
+    "versionsCount": "{count, plural, one {# version} other {# versions}}",
+    "openIssues": "{count, plural, one {# open issue} other {# open issues}}",
+    "sort": {
+      "label": "Sort papers",
+      "updated": "Recently updated",
+      "title": "Title",
+      "score": "Highest score"
+    },
+    "actions": {
+      "menu": "Paper actions",
+      "open": "Open",
+      "newVersion": "Upload new version",
+      "rename": "Rename",
+      "delete": "Delete",
+      "reanalyseCurrent": "Re-analyse current"
+    },
+    "rename": {
+      "title": "Rename paper",
+      "description": "Give this paper a name you'll recognise across its drafts.",
+      "label": "Paper name",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving…"
+    },
+    "delete": {
+      "title": "Delete \"{title}\"?",
+      "description": "This deletes all versions, analyses, and the uploaded files. This cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete paper",
+      "deleting": "Deleting…"
+    },
+    "trend": {
+      "currentScore": "Current score",
+      "singleNudge": "Upload a revised draft to track your progress across versions.",
+      "versionShort": "v{n}",
+      "delta": "{delta} since previous"
+    },
+    "version": {
+      "number": "Version {n}",
+      "current": "Current",
+      "pages": "{count, plural, one {# page} other {# pages}}",
+      "words": "{count, plural, one {# word} other {# words}}",
+      "retry": "Retry analysis",
+      "openReport": "Open report",
+      "viewDocument": "View document"
+    },
+    "category": {
+      "STRUCTURE": "Structure",
+      "REFERENCING": "Referencing",
+      "STYLE": "Style",
+      "ARGUMENTATION": "Argumentation"
+    },
+    "notFound": {
+      "title": "Paper not found",
+      "description": "This paper doesn't exist, or it isn't yours. It may have been deleted.",
+      "back": "Back to my papers"
+    }
+  },
+  "analysis": {
+    "start": "Start analysis",
+    "started": {
+      "label": "Analysis started",
+      "toast": "Analysis started — we'll email you when it's ready."
+    },
+    "error": {
+      "not_found": "We couldn't find this analysis. Try uploading again.",
+      "incompatible": "This document can't be analysed. Please upload a different file.",
+      "already_running": "An analysis is already running for this document.",
+      "no_checks": "No checks were selected. Choose at least one and try again.",
+      "unknown": "We couldn't start the analysis. Please try again."
+    },
+    "status": {
+      "generating": "Analysing",
+      "done": "Complete",
+      "error": "Failed",
+      "partial": "Completed {done} of {total} checks"
+    },
+    "reason": {
+      "COST_CEILING": "This analysis reached its processing limit. The checks that finished are shown below.",
+      "ALL_CHECKS_FAILED": "None of the checks could be completed. Please try again."
+    },
+    "checkStatus": {
+      "GENERATING": "Running",
+      "DONE": "Done",
+      "ERROR": "Couldn't complete this check"
+    },
+    "untitled": "Untitled paper",
+    "analysed": "Analysed {time}",
+    "docType": {
+      "SEMINAR": "Seminar paper",
+      "BACHELOR": "Bachelor's thesis",
+      "MASTER": "Master's thesis",
+      "DISSERTATION": "Dissertation"
+    },
+    "score": {
+      "label": "Academic Score",
+      "eyebrow": "This draft"
+    },
+    "category": {
+      "STRUCTURE": "Structure",
+      "REFERENCING": "Referencing",
+      "STYLE": "Style",
+      "ARGUMENTATION": "Argumentation",
+      "notScored": "—"
+    },
+    "verdict": {
+      "strong": "A strong draft — a few areas to tighten before submission.",
+      "solid": "A solid foundation, with several areas that would reward more work.",
+      "developing": "Developing well, but a number of areas need attention.",
+      "needs_work": "This needs substantial revision before submission — the notes below show where to start.",
+      "pending": "Analysing your document…"
+    },
+    "progress": {
+      "count": "{completed} of {total} checks complete"
+    },
+    "priority": {
+      "title": "If you only do three things",
+      "findings": "{count, plural, one {# issue} other {# issues}}",
+      "review": "Worth a look"
+    },
+    "check": {
+      "unknown": "Check",
+      "findingCount": "{count, plural, one {# issue} other {# issues}}",
+      "workingHint": "This check is still running…"
+    },
+    "checkError": {
+      "title": "This check couldn't be completed",
+      "genericReason": "Something went wrong while running this check.",
+      "retry": "Retry this check",
+      "retrying": "Retrying this check…",
+      "retryFailed": "Couldn't retry. Please try again."
+    },
+    "finding": {
+      "severity": {
+        "LOW": "Minor",
+        "MEDIUM": "Moderate",
+        "HIGH": "Important"
+      },
+      "page": "Page {page}",
+      "suggestion": "Suggestion",
+      "viewInDocument": "View in document"
+    },
+    "helpfulness": {
+      "prompt": "Was this helpful?",
+      "yes": "Yes, this was helpful",
+      "no": "No, this wasn't helpful",
+      "commentPlaceholder": "What was off about this? (optional)",
+      "skip": "Skip",
+      "send": "Send"
+    },
+    "references": {
+      "title": "Reference health",
+      "review": "Review references",
+      "notRun": "Reference health wasn't run for this analysis.",
+      "verified": "Verified",
+      "needsCorrection": "Needs fixing",
+      "broken": "Broken link",
+      "notFound": "Not found",
+      "unchecked": "Unchecked",
+      "brokenNotFound": "Broken / not found",
+      "reconciliationIssues": "{count, plural, =0 {No reconciliation issues} one {# reconciliation issue} other {# reconciliation issues}}",
+      "verifyingProgress": "Verified {done} of {total} sources",
+      "recheck": "Recheck",
+      "rechecking": "Rechecking…",
+      "openLink": "Open source",
+      "retryVerification": "Retry verification",
+      "retrying": "Retrying…",
+      "partialDescription": "References were extracted, but verification couldn't reach the databases. Extraction and reconciliation are shown below.",
+      "tab": {
+        "sources": "Sources ({count})",
+        "issues": "Issues ({count})",
+        "uncited": "Uncited ({count})"
+      },
+      "provider": {
+        "crossref": "Crossref",
+        "openalex": "OpenAlex",
+        "semantic_scholar": "Semantic Scholar",
+        "open_library": "Open Library",
+        "doi_org": "doi.org",
+        "url_head": "the web"
+      },
+      "evidence": {
+        "verified_provider": "Matched on {provider}.",
+        "verified_doi": "The DOI resolves to a valid record.",
+        "verified_url": "The source link is reachable.",
+        "needs_correction_title": "This resolves to a different work than the title you cited — check it.",
+        "broken_doi": "The DOI did not resolve — it may be mistyped or fabricated.",
+        "broken_url": "The source link could not be reached.",
+        "not_found": "No matching record found in Crossref, OpenAlex, or Semantic Scholar.",
+        "unchecked_type": "Standards and grey literature can't be verified automatically — absence from a database isn't proof it doesn't exist.",
+        "unchecked_no_signal": "Not enough information to verify this reference.",
+        "unverified": "Not yet checked."
+      },
+      "issue": {
+        "missingTitle": "Cited but missing",
+        "missingDescription": "This citation has no matching entry in your bibliography.",
+        "page": "Page {page}",
+        "viewInDocument": "View in document",
+        "markResolved": "Mark resolved",
+        "needsCorrectionFix": "The reference points to a different work — check the title.",
+        "brokenFix": "The link or DOI doesn't resolve — update it.",
+        "notFoundFix": "This source couldn't be found — verify it exists.",
+        "allClearTitle": "Every source checks out. Nicely done.",
+        "allClearDescription": "No orphan citations and no broken references."
+      },
+      "uncited": {
+        "hint": "Listed in your bibliography but never cited — remove it or add a citation.",
+        "dismiss": "Dismiss",
+        "emptyTitle": "Every reference is cited",
+        "emptyDescription": "Nothing in your bibliography goes unused."
+      },
+      "empty": {
+        "noSourcesTitle": "No references extracted yet",
+        "noBibliographyTitle": "No reference section found",
+        "noBibliographyDescription": "Reference checking needs a bibliography, and we couldn't find one in this document.",
+        "notRequestedTitle": "Reference health wasn't run"
+      }
+    },
+    "ai": {
+      "title": "AI-writing signals",
+      "strong": "Strong signal",
+      "likely": "Likely signal",
+      "working": "Checking for AI-generated passages…"
+    },
+    "tabs": {
+      "label": "Analysis sections",
+      "overview": "Overview",
+      "document": "Document",
+      "references": "References",
+      "todos": "To-dos",
+      "defense": "Defense",
+      "comingSoon": "Coming soon"
+    },
+    "actions": {
+      "reAnalyse": "Re-analyse",
+      "download": "Download report",
+      "comingSoon": "Coming soon"
+    },
+    "banner": {
+      "partialTitle": "We completed {done} of {total} checks",
+      "allFailedTitle": "This analysis couldn't be completed",
+      "someErrored": "{count, plural, one {# check couldn't be completed} other {# checks couldn't be completed}} — you can retry {count, plural, one {it} other {them}} below."
+    },
+    "empty": {
+      "startingTitle": "Starting your analysis",
+      "startingDescription": "Your checks are queued and will appear here as they finish. You can leave this page — we'll email you.",
+      "notRunTitle": "This paper hasn't been analysed yet",
+      "notRunDescription": "We've read your document and it's ready to go. Start the analysis to get your score, findings and action plan."
+    },
+    "notFound": {
+      "title": "This analysis doesn't exist or isn't yours",
+      "description": "It may have been deleted, or the link is wrong.",
+      "backToPapers": "Back to my papers"
+    }
+  },
+  "errors": {
+    "genericTitle": "Something went wrong",
+    "genericDescription": "The page could not be loaded. This is usually temporary — try again, and if it keeps happening the issue is on our side.",
+    "retrying": "Retrying…",
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "This page does not exist, or you no longer have access to it.",
+    "unauthorizedTitle": "Sign in required",
+    "unauthorizedDescription": "You need to be signed in to view this page.",
+    "forbiddenTitle": "No access",
+    "forbiddenDescription": "Your account does not have permission to view this page.",
+    "digest": "Reference: {digest}"
+  },
+  "empty": {
+    "defaultTitle": "Nothing here yet",
+    "defaultDescription": "Once there is something to show, it will appear here."
+  },
+  "viewer": {
+    "highlightLabel": "Finding: {title}",
+    "pagePlaceholder": "Page {page}",
+    "pages": "Pages",
+    "collapseThumbnails": "Collapse thumbnails",
+    "expandThumbnails": "Expand thumbnails",
+    "resolveFailed": "Couldn't update that finding. Please try again.",
+    "pageType": {
+      "COVER": "Cover",
+      "ABSTRACT": "Abstract",
+      "TOC": "Contents",
+      "BIBLIOGRAPHY": "Bibliography",
+      "APPENDIX": "Appendix",
+      "LIST_OF_ABBREVIATIONS": "Abbreviations"
+    },
+    "toolbar": {
+      "prevPage": "Previous page",
+      "nextPage": "Next page",
+      "pageOf": "Page {page} / {total}",
+      "fit": "Fit",
+      "actual": "100%",
+      "wide": "150%",
+      "zoomOut": "Zoom out",
+      "zoomIn": "Zoom in",
+      "findings": "{count, plural, one {# finding} other {# findings}}",
+      "showResolved": "Show resolved"
+    },
+    "filter": {
+      "ALL": "All findings",
+      "LOW": "Minor",
+      "MEDIUM": "Moderate",
+      "HIGH": "Important",
+      "GRAMMAR": "Grammar",
+      "STYLE": "Style"
+    },
+    "popover": {
+      "suggestion": "Suggestion",
+      "resolve": "Mark resolved",
+      "unresolve": "Reopen",
+      "open": "Open"
+    },
+    "sidebar": {
+      "severity": {
+        "LOW": "Minor",
+        "MEDIUM": "Moderate",
+        "HIGH": "Important"
+      },
+      "page": "Page {page}",
+      "pageHeading": "Page {page}",
+      "resolve": "Resolve",
+      "unresolve": "Reopen",
+      "view": "View"
+    },
+    "empty": {
+      "noneTitle": "No issues flagged in this document",
+      "noneDescription": "Nicely done — nothing to highlight here.",
+      "resolvedTitle": "All {count} issues resolved",
+      "resolvedDescription": "You've worked through every finding. Turn on “Show resolved” to see them again.",
+      "filteredTitle": "No findings match this filter",
+      "filteredDescription": "Try a different severity or clear the filter."
+    },
+    "fallback": {
+      "banner": "Inline highlights aren't available for this document, but here's every finding with its page and quote."
+    },
+    "loadError": {
+      "title": "We couldn't open this document",
+      "description": "The document link may have expired. Try again in a moment."
+    }
+  },
+  "requirements": {
+    "title": "Requirements",
+    "description": "Upload your university or journal guidelines and we'll turn them into checks.",
+    "emptyTitle": "No requirements yet",
+    "emptyDescription": "Upload your guidelines or add a rule manually.",
+    "optional": "Optional",
+    "editAction": "Edit requirement",
+    "deleteAction": "Delete requirement",
+    "source": {
+      "manual": "Manual",
+      "unknown": "Imported"
+    },
+    "actions": {
+      "upload": "Upload guidelines",
+      "add": "Add requirement"
+    },
+    "tabs": {
+      "all": "All requirements ({count})",
+      "files": "Guideline files ({count})"
+    },
+    "category": {
+      "Formatting": "Formatting",
+      "Structure": "Structure",
+      "Citation": "Citation",
+      "Content": "Content",
+      "Length": "Length",
+      "Language": "Language",
+      "Other": "Other"
+    },
+    "checkable": {
+      "checkable": "Checkable",
+      "manualOnly": "Manual only",
+      "reason": {
+        "margins": "We can't verify margins from text — check this yourself.",
+        "font": "We can't verify font size or family from text — check this yourself.",
+        "spacing": "We can't verify line spacing from text — check this yourself.",
+        "physical": "We can't verify physical page layout from text — check this yourself.",
+        "color": "We can't verify print colour from text — check this yourself."
+      }
+    },
+    "file": {
+      "generated": "{count, plural, =0 {No requirements generated} one {# requirement generated} other {# requirements generated}}",
+      "applyToPaper": "Apply to a paper",
+      "reextract": "Re-extract",
+      "delete": "Delete file",
+      "none": "No requirements were extracted from this file.",
+      "summary": "{total} requirements · {checkable} checkable · {manual} manual-only"
+    },
+    "incompatible": {
+      "title": "We couldn't read this file",
+      "not_pdf": "This file isn't a valid PDF. Upload a different file.",
+      "empty_or_scanned": "This looks like a scanned or empty document — there's no text to read. Upload a text-based PDF.",
+      "download_failed": "We couldn't retrieve the uploaded file. Please try uploading it again.",
+      "extraction_failed": "Something went wrong reading this file. Try re-extracting, or upload a different file."
+    },
+    "extraction": {
+      "reading": "Reading your guidelines and generating checks…",
+      "readingHint": "This usually takes under a minute."
+    },
+    "upload": {
+      "cta": "Upload guidelines (PDF)",
+      "hint": "Your faculty or journal formatting guide — up to 10 MB.",
+      "uploading": "Uploading…",
+      "processing": "Reading your guidelines…",
+      "errors": {
+        "notPdf": "Please choose a PDF file.",
+        "tooLarge": "That file is larger than 10 MB.",
+        "empty": "That file is empty.",
+        "uploadFailed": "Upload failed. Please try again."
+      }
+    },
+    "dialog": {
+      "createTitle": "Add a requirement",
+      "editTitle": "Edit requirement",
+      "guidance": "Specific, testable rules work best — \"Every figure must have a caption in the format 'Figure N: …'\" checks far better than \"check figures\".",
+      "ruleLabel": "The rule",
+      "rulePlaceholder": "e.g. The abstract must be 150–300 words",
+      "categoryLabel": "Category",
+      "mandatory": "Mandatory (must, not just should)",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving…"
+    },
+    "deleteDialog": {
+      "title": "Delete this requirement?",
+      "description": "It will no longer be checked against your papers. This cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    },
+    "picker": {
+      "selected": "{count} of up to {max} selected"
+    },
+    "notFound": {
+      "title": "Guideline file not found",
+      "description": "This file doesn't exist, or it isn't yours. It may have been deleted.",
+      "back": "Back to requirements"
+    }
+  },
+  "todos": {
+    "manualGroup": "Your tasks",
+    "startHere": "Start here",
+    "addTask": "Add task",
+    "summary": {
+      "progress": "{done} of {total} done",
+      "effortLeft": "About {effort} of work left",
+      "addDeadline": "Add your submission date to plan your time."
+    },
+    "deadline": {
+      "add": "Add deadline",
+      "set": "Submitting {date}",
+      "clear": "Clear deadline"
+    },
+    "feasibility": {
+      "doable": "About {hours}h of work, {days, plural, one {# day} other {# days}} left — very doable.",
+      "tight": "About {hours}h of work, {days, plural, one {# day} other {# days}} left — focus on the Start-here group."
+    },
+    "group": {
+      "summary": "{count, plural, one {# task} other {# tasks}} · {effort}"
+    },
+    "item": {
+      "view": "View",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "edit": "Edit task",
+      "delete": "Delete task"
+    },
+    "done": {
+      "title": "Completed ({count})",
+      "allComplete": "{count, plural, one {# task done} other {All # tasks done}}"
+    },
+    "add": {
+      "createTitle": "Add a task",
+      "editTitle": "Edit task",
+      "subtitle": "Your own tasks sit alongside the generated plan and are kept when you regenerate.",
+      "titleLabel": "Task",
+      "descriptionLabel": "Notes (optional)",
+      "estimateLabel": "Estimated effort",
+      "noEstimate": "No estimate",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving…"
+    },
+    "regenerate": {
+      "title": "Regenerate the plan?",
+      "description": "This rebuilds the plan from the current findings. Your own tasks are kept.",
+      "confirm": "Regenerate",
+      "action": "Regenerate plan"
+    },
+    "states": {
+      "generatingTitle": "Building your action plan from the review…",
+      "generate": "Generate action plan",
+      "generating": "Generating…",
+      "retry": "Retry",
+      "backToReport": "Back to report",
+      "none": {
+        "title": "No action plan yet",
+        "description": "Generate a prioritised to-do list from this analysis."
+      },
+      "empty": {
+        "title": "No action items",
+        "description": "This draft is in great shape — there's nothing worth tasking."
+      },
+      "allDone": {
+        "title": "Everything's checked off. You're ready.",
+        "description": "Every task in your plan is done."
+      },
+      "error": {
+        "title": "We couldn't build your plan",
+        "description": "Something went wrong generating the action plan. Try again."
+      }
+    }
+  },
+  "defense": {
+    "intro": "{count} questions an examiner would likely ask about this thesis.",
+    "difficulty": {
+      "foundational": "Foundational",
+      "probing": "Probing",
+      "challenging": "Challenging"
+    },
+    "group": {
+      "count": "{count, plural, one {# question} other {# questions}}"
+    },
+    "card": {
+      "fromThesis": "From your thesis: “{quote}”",
+      "whyAsk": "Why they ask this",
+      "showAnswer": "Show model answer",
+      "hideAnswer": "Hide model answer",
+      "modelAnswer": "Model answer",
+      "keyPoints": "Key points"
+    },
+    "practice": {
+      "start": "Start practice",
+      "starting": "Starting…",
+      "counter": "Question {current} / {total}",
+      "exit": "Exit",
+      "previous": "Previous",
+      "next": "Next question",
+      "finish": "Finish",
+      "submit": "Submit answer",
+      "submitting": "Getting feedback…",
+      "skip": "Skip",
+      "skipped": "You skipped this question.",
+      "yourAnswer": "Your answer",
+      "placeholder": "Type your answer as you would say it to the committee…",
+      "modelAnswer": "Model answer",
+      "keyPoints": "Key points",
+      "noQuestions": "There are no questions to practise yet."
+    },
+    "feedback": {
+      "title": "Feedback on your answer",
+      "strengths": "Strengths",
+      "gaps": "Gaps",
+      "suggestion": "One thing to do",
+      "verdict": {
+        "strong": "Strong",
+        "adequate": "Adequate",
+        "needs_work": "Needs work"
+      }
+    },
+    "summary": {
+      "title": "Session complete",
+      "attempted": "You attempted {attempted} of {total} questions.",
+      "strong": "Strong",
+      "adequate": "Adequate",
+      "needsWork": "Needs work",
+      "read": {
+        "solid": "Solid rehearsal — the more you practise these, the more familiar the real thing will feel.",
+        "mixed": "A useful session. Revisit the questions you found hardest and try them again.",
+        "none": "Come back and attempt a few questions to rehearse for the real thing."
+      },
+      "backToQuestions": "Back to questions"
+    },
+    "history": {
+      "emptyTitle": "No practice sessions yet",
+      "emptyDescription": "Start one to rehearse — answer, get feedback, compare to a model answer.",
+      "attempted": "{answered} of {total} answered",
+      "completed": "Completed",
+      "inProgress": "In progress",
+      "review": "Review"
+    },
+    "voice": {
+      "title": "Practise out loud",
+      "badge": "Coming soon",
+      "description": "Voice practice with a live examiner — coming soon."
+    },
+    "tabs": {
+      "questions": "Questions",
+      "history": "Practice history ({count})"
+    },
+    "states": {
+      "generatingTitle": "Preparing your defense questions…",
+      "generate": "Generate defense questions",
+      "generating": "Generating…",
+      "retry": "Retry",
+      "none": {
+        "title": "No defense questions yet",
+        "description": "Generate the questions a committee would likely ask about this thesis."
+      },
+      "error": {
+        "title": "We couldn't prepare your questions",
+        "description": "Something went wrong generating the defense questions. Try again."
+      }
+    },
+    "notFound": {
+      "title": "Practice session not found",
+      "description": "This session doesn't exist, or it isn't yours. It may have been deleted.",
+      "back": "Back to defense"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Your profile, preferences, and how Scriptor handles your work.",
+    "nav": {
+      "label": "Settings sections",
+      "general": "Settings",
+      "data": "Your data"
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "How you appear in Scriptor.",
+      "noName": "No name set",
+      "nameLabel": "Name",
+      "save": "Save",
+      "saving": "Saving…",
+      "saved": "Saved",
+      "saveError": "Couldn't save",
+      "emailLabel": "Email",
+      "emailNote": "Contact us to change your email.",
+      "languageLabel": "Language",
+      "language": {
+        "EN": "English",
+        "DE": "Deutsch"
+      }
+    },
+    "defaults": {
+      "title": "Analysis defaults",
+      "description": "Applied to new uploads. You can still change these per upload.",
+      "applyCustom": "Apply my custom requirements to new uploads by default",
+      "applyCustomHint": "Pre-selects your saved requirements when you start an analysis.",
+      "autoDelete": "Delete new documents 90 days after upload",
+      "autoDeleteHint": "Your report is kept; only the source file and its text are removed."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Choose what Scriptor emails and shows you.",
+      "transactionalNote": "Security and account emails can't be turned off — they keep your account safe.",
+      "pref": {
+        "email_analysis_complete": {
+          "label": "Email me when an analysis is ready",
+          "hint": "The completion email that brings you back once your review is done."
+        },
+        "email_analysis_failed": {
+          "label": "Email me if an analysis fails",
+          "hint": "So you're not left waiting on a review that won't arrive."
+        },
+        "email_reference_issues": {
+          "label": "Email me about reference issues",
+          "hint": "When citation or reference problems are found."
+        },
+        "email_todo_due_soon": {
+          "label": "Email me when a task is due soon",
+          "hint": "A nudge as your submission deadline approaches."
+        },
+        "email_weekly_digest": {
+          "label": "Weekly progress digest",
+          "hint": "A calm weekly summary of your papers and scores."
+        },
+        "in_app_enabled": {
+          "label": "In-app notifications",
+          "hint": "Show updates in the notification bell."
+        }
+      }
+    },
+    "session": {
+      "title": "Session",
+      "description": "Sign out of this device, or everywhere at once.",
+      "signOut": "Sign out",
+      "signOutEverywhere": "Sign out of all devices",
+      "everywhereTitle": "Sign out everywhere?",
+      "everywhereDescription": "This ends every active session on all your devices. You'll need to sign in again.",
+      "everywhereConfirm": "Sign out everywhere"
+    },
+    "data": {
+      "title": "Your data",
+      "subtitle": "Control what Scriptor keeps, export everything, or close your account.",
+      "privacy": "Your thesis is unpublished work, and we treat it that way. Documents are never used to train models and are never shared with anyone outside Scriptor. You control how long we keep them, and you can export or delete everything at any time."
+    },
+    "retention": {
+      "title": "Document retention",
+      "description": "What happens to your uploaded documents after {days} days.",
+      "deleteOption": "Delete documents {days} days after upload",
+      "deleteOptionHint": "The privacy-preserving default.",
+      "keepOption": "Keep documents until I delete them",
+      "keepOptionHint": "Your documents stay until you remove them yourself.",
+      "whatHappens": "When a document is deleted:",
+      "removes": "Removed: the uploaded file and its raw text.",
+      "keeps": "Kept: your report, scores and feedback — so you never lose your work.",
+      "perUploadNote": "Per-upload settings you chose at upload time still apply."
+    },
+    "export": {
+      "title": "Export my data",
+      "description": "Download everything Scriptor has about you as a JSON file.",
+      "action": "Download my data",
+      "working": "Preparing…",
+      "done": "Downloaded",
+      "rateLimited": "You've exported recently — please try again in a little while.",
+      "error": "Couldn't prepare your export. Please try again."
+    },
+    "danger": {
+      "title": "Close account",
+      "description": "These actions are permanent. Please read carefully.",
+      "anonymiseLabel": "Anonymise my account",
+      "anonymiseHint": "Removes your personal information but keeps anonymised aggregates.",
+      "deleteLabel": "Permanently delete my account",
+      "deleteHint": "Erases everything — papers, versions, analyses and files — and removes your account."
+    },
+    "delete": {
+      "trigger": "Delete my account",
+      "title": "Permanently delete your account?",
+      "description": "This cannot be undone. Everything below will be destroyed:",
+      "destroys": {
+        "papers": "All your papers and their versions",
+        "analyses": "All analyses, reports and findings",
+        "files": "Every uploaded document and guideline file",
+        "account": "Your profile and account"
+      },
+      "confirmLabel": "Type DELETE (or your email) to confirm",
+      "error": "Something went wrong. Please try again.",
+      "cancel": "Cancel",
+      "deleting": "Deleting…",
+      "confirm": "Delete my account"
+    },
+    "anonymise": {
+      "trigger": "Anonymise my account",
+      "title": "Anonymise your account?",
+      "description": "Your name and email are removed and your account is closed. Anonymised aggregates are kept. This cannot be undone.",
+      "confirm": "Anonymise"
+    },
+    "deleted": {
+      "title": "Your account has been closed",
+      "description": "Everything has been removed. Thank you for using Scriptor — we wish you well with your defense.",
+      "home": "Go to homepage"
+    }
+  },
+  "dashboard": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "next": {
+      "eyebrow": "Work on this next",
+      "title": "{count, plural, one {Resolve # finding} other {Resolve # findings}}",
+      "cta": "Open the report",
+      "runningEyebrow": "Reading your work",
+      "runningTitle": "{count, plural, one {# analysis is running} other {# analyses are running}}",
+      "runningDetail": "We will have your feedback shortly. Nothing to do until then.",
+      "runningCta": "See progress",
+      "clearEyebrow": "All clear",
+      "clearTitle": "Nothing needs your attention",
+      "clearDetail": "Every finding has been resolved. Upload a new draft when you are ready.",
+      "clearCta": "Start a new analysis"
+    },
+    "standing": {
+      "caption": "Averaged across {count, plural, one {# analysed paper} other {# analysed papers}}.",
+      "captionRunning": "{count, plural, one {# analysis is} other {# analyses are}} still running.",
+      "captionEmpty": "Your score appears once a paper has been analysed.",
+      "band": {
+        "strong": "Strong",
+        "solid": "Solid",
+        "developing": "Developing",
+        "needs_work": "Needs work"
+      },
+      "eyebrow": "Overall standing"
+    },
+    "stats": {
+      "papers": "Papers analysed",
+      "openIssues": "Open findings",
+      "averageScore": "Average score",
+      "versions": "Drafts uploaded"
+    },
+    "trend": {
+      "title": "Score across drafts",
+      "subtitle": "{title}",
+      "label": "Score across {count} drafts of {title}, from {from} to {to}.",
+      "point": "Draft {version}: {score} out of 100.",
+      "deltaUp": "+{delta} since first draft",
+      "deltaDown": "{delta} since first draft",
+      "deltaFlat": "No change since first draft",
+      "emptyTitle": "No trend yet",
+      "emptyBody": "Upload a revised draft and this chart will show how your score moves between versions.",
+      "byPaperTitle": "Scores by paper"
+    },
+    "recent": {
+      "title": "Recent activity",
+      "viewAll": "View all",
+      "openCount": "{count, plural, one {# open finding} other {# open findings}}"
+    },
+    "empty": {
+      "title": "Your dashboard is waiting",
+      "body": "Upload your first draft and Scriptor will analyse it, score it, and show you exactly what to fix.",
+      "cta": "Upload a draft"
+    }
+  }
+}

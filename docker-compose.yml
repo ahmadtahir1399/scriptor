@@ -1,0 +1,28 @@
+# Isolated dev environment — runs the app inside a clean Linux Node container.
+# Host node.exe is being blocked by Defender (malware on the host), so we build
+# and run here instead. node_modules and .next live in named volumes (Linux-native,
+# fast) and never touch the Windows filesystem.
+#
+# Usage:  docker compose up        (start / resume — Ctrl+C to stop)
+#         docker compose up -d     (start in background)
+#         docker compose down      (stop)
+#         docker compose run --rm dev npm install <pkg>   (add a dependency)
+services:
+  dev:
+    image: node:22
+    working_dir: /app
+    environment:
+      - WATCHPACK_POLLING=true      # make hot-reload work across the Windows->Linux mount
+      - CHOKIDAR_USEPOLLING=true
+      - NEXT_TELEMETRY_DISABLED=1
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app                       # your source (edit on Windows as normal)
+      - node_modules:/app/node_modules
+      - next_cache:/app/.next
+    command: sh -c "npm install && npm run dev -- -H 0.0.0.0 -p 3000"
+
+volumes:
+  node_modules:
+  next_cache:
